@@ -6,7 +6,6 @@
 <title>Sourcing Intelligence — CloudWalk</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
 <style>
   :root{
     --bg-deep:#080B22;
@@ -90,8 +89,10 @@
   @media (max-width:860px){.grid-2{grid-template-columns:1fr;}}
   .panel{padding:22px 24px;}
   .panel h3{font-size:14px;color:var(--text-hi);margin-bottom:14px;font-weight:600;}
-  .chart-wrap{position:relative;height:270px;}
+  .chart-wrap{position:relative;height:270px;overflow:hidden;}
   .chart-wrap.short{height:190px;}
+  .svg-chart{width:100%;height:100%;}
+  .svg-chart svg{display:block;max-height:100%;}
 
   .funnel{display:flex;flex-direction:column;gap:7px;}
   .funnel-row{display:grid;grid-template-columns:140px 1fr 84px;align-items:center;gap:12px;}
@@ -138,6 +139,7 @@
     border-radius:10px;padding:10px 12px;font-family:'Inter',sans-serif;font-size:13.5px;outline:none;transition:border-color .15s;
   }
   .field select:focus, .field input:focus{border-color:var(--indigo-soft);}
+  .field select option{background:#141B3C;color:#F6F7FC;}
   .field-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
   @media (max-width:520px){.field-row{grid-template-columns:1fr;}}
 
@@ -199,14 +201,14 @@
     <span class="brand-word">cloudwalk</span>
     <span class="brand-tag">Sourcing Intelligence</span>
   </div>
-  <h1>Do sourcing à contratação: onde o funil ganha e onde <span class="accent">perde</span>.</h1>
-  <p class="sub">601 candidatos, jan–jun/2025. Um painel de uso diário — conversão por etapa, sinais que preveem avanço, e um Candidate Advisor para decidir, candidato a candidato, se vale a pena insistir.</p>
+  <h1>Painel de Sourcing e Recrutamento</h1>
+  <p class="sub">Acompanhe o funil de candidatos, entenda quais sinais preveem contratação, e decida — candidato a candidato — quando vale a pena insistir. Baseado em 601 candidatos reais do processo seletivo, jan–jun/2025 <span title="Todos os números deste painel vêm da planilha mock_sourcing_dataset.xlsx, com 601 linhas (uma por candidato) e 35 colunas.">(passe o mouse nos números e gráficos para ver de qual dado da planilha eles vêm)</span>.</p>
 
   <div class="kpi-strip">
-    <div class="glass glass-tight kpi accent"><div class="num mono" id="kpi-total">—</div><div class="label">Candidatos sourced</div></div>
-    <div class="glass glass-tight kpi accent"><div class="num mono" id="kpi-rate">—</div><div class="label">Taxa geral de contratação</div></div>
-    <div class="glass glass-tight kpi"><div class="num mono" id="kpi-drop">—</div><div class="label">Nunca respondem ao 1º contato</div></div>
-    <div class="glass glass-tight kpi"><div class="num mono" id="kpi-variacao">—</div><div class="label">Variação de prática no time — oportunidade de aprendizagem</div></div>
+    <div class="glass glass-tight kpi accent" title="Contagem de linhas da planilha (uma linha = um candidato que entrou no processo). Coluna: candidate_id."><div class="num mono" id="kpi-total">—</div><div class="label">Candidatos sourced</div></div>
+    <div class="glass glass-tight kpi accent" title="Candidatos com a coluna 'hired' = verdadeiro, dividido pelo total de candidatos."><div class="num mono" id="kpi-rate">—</div><div class="label">Taxa geral de contratação</div></div>
+    <div class="glass glass-tight kpi" title="Candidatos onde a coluna 'response_received' é falsa — ou seja, nunca deram retorno ao primeiro contato do recrutador."><div class="num mono" id="kpi-drop">—</div><div class="label">Nunca respondem ao 1º contato</div></div>
+    <div class="glass glass-tight kpi" title="Taxa de contratação da coluna 'recruiter' com maior valor, dividida pela de menor valor. Ex: se um recrutador converte 15% e outro 4%, a variação é 3,8x."><div class="num mono" id="kpi-variacao">—</div><div class="label">Variação de prática no time — oportunidade de aprendizagem</div></div>
   </div>
 </header>
 
@@ -216,31 +218,31 @@
     <div class="section-head"><span class="idx">01</span><h2>A jornada do candidato</h2></div>
     <p class="section-sub">Cada etapa é onde uma decisão real acontece no dia a dia do recrutamento. Clique em qualquer cartão para ver a análise completa daquele momento.</p>
     <div class="journey-grid">
-      <a class="glass journey-card" href="#channel-section">
+      <a class="glass journey-card" href="#channel-section" title="Canal com maior taxa de contratação. Coluna: source_channel, cruzada com hired.">
         <span class="journey-step">Sourcing</span>
         <div class="journey-metric" id="j-channel">—</div>
         <h3>Qual canal converte melhor</h3>
         <p>Onde investir esforço de sourcing — não por volume, por conversão real em contratação.</p>
       </a>
-      <a class="glass journey-card" href="#funnel-section">
+      <a class="glass journey-card" href="#funnel-section" title="% de candidatos onde response_received é falso — nunca deram retorno ao primeiro contato.">
         <span class="journey-step">Engajamento</span>
         <div class="journey-metric" id="j-drop">—</div>
         <h3>Onde a probabilidade cai</h3>
         <p>O maior degrau de perda do funil acontece antes de qualquer avaliação técnica.</p>
       </a>
-      <a class="glass journey-card" href="#scores-section">
+      <a class="glass journey-card" href="#scores-section" title="Nota técnica média (coluna technical_test_score, escala 0-100) de quem foi contratado vs. quem não foi.">
         <span class="journey-step">Avaliação</span>
         <div class="journey-metric" id="j-scores">—</div>
         <h3>Sinais de avanço</h3>
-        <p>O que, objetivamente, diferencia quem é contratado de quem não é.</p>
+        <p>Score técnico médio: contratados vs. não contratados, numa escala de 0 a 100.</p>
       </a>
-      <a class="glass journey-card" href="#learning-section">
+      <a class="glass journey-card" href="#learning-section" title="Maior taxa de contratação entre recrutadores dividida pela menor. Coluna: recruiter, cruzada com hired.">
         <span class="journey-step">Aprendizagem</span>
         <div class="journey-metric" id="j-recruiter">—</div>
         <h3>Trocas de prática no time</h3>
         <p>Onde a variação é maior — e como transformar isso em aprendizagem coletiva, não ranking.</p>
       </a>
-      <a class="glass journey-card" href="#advisor-section">
+      <a class="glass journey-card" href="#advisor-section" title="Ferramenta interativa mais abaixo nesta página — não é um dado da planilha.">
         <span class="journey-step">Decisão</span>
         <div class="journey-metric">Advisor</div>
         <h3>Vale insistir?</h3>
@@ -262,7 +264,7 @@
     <div class="section-head"><span class="idx">03</span><h2>Conversão por canal de sourcing</h2></div>
     <p class="section-sub">Onde investir esforço de sourcing no próximo trimestre — ordenado por taxa de contratação, não por volume de candidatos gerados.</p>
     <div class="glass panel">
-      <div class="chart-wrap"><canvas id="chartChannel"></canvas></div>
+      <div class="chart-wrap"><div id="chartChannel" class="svg-chart"></div></div>
       <div class="insight" id="channel-insight"></div>
     </div>
   </section>
@@ -271,7 +273,7 @@
     <div class="section-head"><span class="idx">04</span><h2>Scores e velocidade</h2></div>
     <p class="section-sub">O que diferencia, na média, quem é contratado de quem não é — os três perfis de avaliação sobrepostos.</p>
     <div class="grid-2">
-      <div class="glass panel"><h3>Perfil de score: contratado vs. não contratado</h3><div class="chart-wrap"><canvas id="chartScores"></canvas></div></div>
+      <div class="glass panel"><h3>Perfil de score: contratado vs. não contratado</h3><div class="chart-wrap"><div id="chartScores" class="svg-chart"></div></div></div>
       <div class="glass panel">
         <h3>Tempo médio (dias)</h3>
         <table><thead><tr><th></th><th class="num">Resposta</th><th class="num">Duração no processo</th></tr></thead><tbody id="velocity-table"></tbody></table>
@@ -284,24 +286,38 @@
     <div class="section-head"><span class="idx">05</span><h2>Aprendizagem entre pares</h2></div>
     <p class="section-sub">A variação de conversão entre recrutadores(as) é o maior sinal de todo o funil — maior até que a variação entre canais. Isso não é um placar de desempenho individual: é um mapa de onde há prática rica pra compartilhar. Por isso o gráfico abaixo está em ordem alfabética, não em ranking.</p>
     <div class="glass panel">
-      <div class="chart-wrap"><canvas id="chartRecruiter"></canvas></div>
+      <div class="chart-wrap"><div id="chartRecruiter" class="svg-chart"></div></div>
       <div class="insight learn" id="recruiter-insight"></div>
     </div>
   </section>
 
   <section id="ai-section">
     <div class="section-head"><span class="idx">06</span><h2>IA aplicada — sinal das notas de recrutador</h2></div>
-    <p class="section-sub">Os 11 padrões de nota registrados foram classificados pelo Claude (Anthropic) em tema e sinal (positivo / risco / misto), simulando um classificador de "automated candidate feedback" em produção.</p>
+    <p class="section-sub" title="Coluna: recruiter_notes. Cada uma das 601 linhas da planilha tem uma frase curta escrita pelo(a) recrutador(a) sobre aquele candidato.">Toda vez que um(a) recrutador(a) avalia um candidato, escreve uma nota curta em texto livre (coluna <code>recruiter_notes</code> da planilha). São 601 notas no total, mas na prática só <b>11 frases diferentes</b> se repetem. Pedimos para o Claude (Anthropic) ler essas 11 frases e classificar cada uma em duas coisas: um <b>tema</b> (do que a nota fala) e um <b>sinal</b> — se, de modo geral, aquele tipo de comentário costuma soar positivo, negativo/de risco, ou misto para a chance de avançar no processo.</p>
+
+    <div class="glass panel" style="margin-bottom:20px;">
+      <h3>Como funciona, com exemplos reais</h3>
+      <table>
+        <thead><tr><th>Nota do(a) recrutador(a) (texto original)</th><th>Sinal classificado pela IA</th></tr></thead>
+        <tbody>
+          <tr><td>"Boa comunicação e resposta rápida."</td><td><span style="color:var(--indigo-pale);font-weight:600;">Positivo</span> — comentário favorável, indica engajamento</td></tr>
+          <tr><td>"Baixa responsividade nas etapas iniciais."</td><td><span style="color:var(--orange-soft);font-weight:600;">Risco</span> — comentário de alerta, indica possível desistência</td></tr>
+          <tr><td>"Experiência sólida, mas expectativa salarial alta."</td><td>Misto — tem parte positiva e parte de atrito no mesmo comentário</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:var(--text-lo);margin-top:10px;">As outras 8 frases seguem a mesma lógica. A lista completa está em <code>outputs/ai_notes_classification.csv</code> no repositório.</p>
+    </div>
+
     <div class="grid-2">
       <div class="glass panel">
-        <h3>Composição das notas registradas</h3>
-        <div class="chart-wrap short"><canvas id="chartSignal"></canvas></div>
-        <div class="chip-row" id="signal-chips"></div>
+        <h3>Quantas notas caem em cada sinal</h3>
+        <div class="chart-wrap short"><div id="chartSignal" class="svg-chart"></div></div>
+        <div class="chip-row" id="signal-chips" title="Taxa de contratação (coluna hired) dos candidatos cujo recrutador usou uma nota daquele sinal."></div>
       </div>
       <div class="glass panel">
-        <h3>Achado</h3>
-        <div class="insight warn" style="margin-top:0;">O sinal classificado <b>não separa bem</b> quem é contratado: risco converte 8,0%, positivo converte 7,4%. "Misto" (atrito salarial) converte mais (14,0%) — objeção de salário não é motivo de descarte automático.</div>
-        <div class="insight">Por isso o Candidate Advisor, abaixo, dá <b>peso baixo</b> à nota qualitativa e prioriza scores objetivos e velocidade de resposta.</div>
+        <h3>O que descobrimos ao testar isso contra quem foi contratado</h3>
+        <div class="insight warn" style="margin-top:0;">O sinal da nota <b>quase não muda</b> a chance de contratação: notas de "risco" convertem 8,0%, "positivo" converte 7,4% — uma diferença pequena demais pra confiar. Notas "mistas" (geralmente sobre salário) convertem mais (14,0%), ou seja, uma objeção de salário não deveria, sozinha, tirar um candidato do processo.</div>
+        <div class="insight">Por isso o Candidate Advisor, na próxima seção, dá <b>peso baixo</b> à nota do recrutador e confia mais nos scores objetivos e na velocidade de resposta, que de fato diferenciam quem é contratado (seção 04).</div>
       </div>
     </div>
   </section>
@@ -372,7 +388,7 @@
     <div class="section-head"><span class="idx">08</span><h2>Panorama do pipeline ativo</h2></div>
     <p class="section-sub">Aplicando a mesma lógica do Advisor aos 360 candidatos ainda em processo — três faixas de prioridade, não uma lista ranqueada.</p>
     <div class="glass panel">
-      <div class="chart-wrap short"><canvas id="chartPersist"></canvas></div>
+      <div class="chart-wrap short"><div id="chartPersist" class="svg-chart"></div></div>
       <div class="chip-row" id="persist-chips"></div>
     </div>
   </section>
@@ -425,16 +441,28 @@ document.getElementById('kpi-variacao').textContent = recVariation.toFixed(1) + 
 
 document.getElementById('j-channel').textContent = topCh[0].source_channel;
 document.getElementById('j-drop').textContent = fmtPct(dropPct);
-document.getElementById('j-scores').textContent = '+' + (D.scores_by_hired.find(r=>r.hired).technical_test_score - D.scores_by_hired.find(r=>!r.hired).technical_test_score).toFixed(0) + ' pts';
+const h_tech = D.scores_by_hired.find(r=>r.hired).technical_test_score;
+const nh_tech = D.scores_by_hired.find(r=>!r.hired).technical_test_score;
+document.getElementById('j-scores').textContent = h_tech.toFixed(0) + ' vs ' + nh_tech.toFixed(0);
 document.getElementById('j-recruiter').textContent = recVariation.toFixed(1) + 'x';
 
 // ---------- funnel (bespoke, no charting lib needed) ----------
+const funnelColumnMap = {
+  'Sourced': 'candidate_id (todas as linhas da planilha)',
+  'Respondeu': 'response_received = verdadeiro',
+  'Screening OK': 'screening_pass = verdadeiro',
+  'Entrevista OK': 'interview1_pass = verdadeiro',
+  'Teste realizado': 'test_taken = verdadeiro',
+  'Oferta enviada': 'offer_sent = verdadeiro',
+  'Contratado': 'hired = verdadeiro',
+};
 const funnelWrap = document.getElementById('funnel');
 const steps = Object.entries(D.funnel);
 const maxV = steps[0][1];
 steps.forEach(([label, val], i) => {
   const row = document.createElement('div');
   row.className = 'funnel-row';
+  row.title = `Coluna: ${funnelColumnMap[label]} • ${val} candidatos (${(val/maxV*100).toFixed(1)}% do total sourced)`;
   row.innerHTML = `<div class="funnel-label">${label}</div>
     <div class="funnel-bar-bg"><div class="funnel-bar ${i===steps.length-1?'hi':''}" style="width:${(val/maxV*100).toFixed(1)}%"></div></div>
     <div class="funnel-val mono">${val}</div>`;
@@ -449,89 +477,161 @@ document.getElementById('channel-insight').innerHTML =
 document.getElementById('recruiter-insight').innerHTML =
   `A diferença entre a maior e a menor taxa de conversão do time é de <b>${recVariation.toFixed(1)}x</b> — maior que a diferença entre o melhor e o pior canal. Isso costuma significar prática valiosa acumulada por algumas pessoas do time que ainda não foi compartilhada com o restante — um bom ponto de partida para sessões de shadowing ou comunidade de prática, não uma métrica de avaliação individual.`;
 
-// ---------- charts (dark theme), guarded so an offline/CDN failure never
-// breaks the rest of the page (Candidate Advisor must keep working) ----------
-try {
-  if (typeof Chart === 'undefined') throw new Error('Chart.js indisponível (offline ou CDN bloqueado)');
+// ---------- charts, built as plain inline SVG (no external library) ----------
+// Rebuilt this way on purpose: a CDN-hosted charting library can be blocked by
+// an ad-blocker, a corporate firewall, or a flaky connection - exactly the kind
+// of thing that shouldn't be able to take down a live demo. Every chart below
+// is generated with vanilla JS and SVG, so there is nothing external to fail.
+const INDIGO_D='#2B3E9E', INDIGO_SOFT='rgba(136,145,224,0.55)', ORANGE='#E8794A', GOOD='#6FD6B0', GREY='rgba(255,255,255,0.14)';
 
-  Chart.defaults.font.family = "'Inter', sans-serif";
-  Chart.defaults.font.size = 12;
-  Chart.defaults.color = '#AEB4D6';
-  const INDIGO='#4E5FC7', INDIGO_D='#2B3E9E', ORANGE='#E8794A', ORANGE_S='#F2A67C', GOOD='#6FD6B0';
-  const gridOpt = { grid:{color:'rgba(255,255,255,0.07)'}, ticks:{color:'#AEB4D6'} };
-
-  // 1. Channel — horizontal bar, shaded by relative performance (operational metric, ranking is fine here)
-  new Chart(document.getElementById('chartChannel'), {
-    type:'bar',
-    data:{labels:topCh.map(r=>r.source_channel), datasets:[{data:topCh.map(r=>r.rate),
-      backgroundColor:topCh.map((r,i)=> i===0 ? ORANGE : `rgba(78,95,199,${0.9 - i*0.09})`), borderRadius:6, maxBarThickness:26}]},
-    options:{indexAxis:'y', responsive:true, maintainAspectRatio:false,
-      plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>c.formattedValue+'%'}}},
-      scales:{ x:{beginAtZero:true, ...gridOpt, ticks:{...gridOpt.ticks, callback:v=>v+'%'}}, y:{grid:{display:false}, ticks:{color:'#AEB4D6'}} }}
+function hBarChart(containerId, items, opts={}){
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const w = 560, rowH = 32, padL = opts.padL || 128, padR = 46, padTop = 8;
+  const maxV = Math.max(...items.map(d=>d.value)) * 1.18 || 1;
+  const h = items.length * rowH + padTop*2;
+  let rows = '';
+  items.forEach((d,i)=>{
+    const y = padTop + i*rowH;
+    const barMaxW = w - padL - padR;
+    const barW = Math.max((d.value/maxV) * barMaxW, 3);
+    rows += `
+      <g>
+        <title>${d.tooltip || d.label}</title>
+        <text x="${padL-10}" y="${y+rowH/2+4}" text-anchor="end" font-size="12.5" fill="#AEB4D6" font-family="Inter,sans-serif">${d.label}</text>
+        <rect x="${padL}" y="${y+5}" width="${barMaxW}" height="${rowH-13}" rx="6" fill="rgba(255,255,255,0.06)"></rect>
+        <rect x="${padL}" y="${y+5}" width="${barW}" height="${rowH-13}" rx="6" fill="${d.color}" style="cursor:help;"></rect>
+        <text x="${padL+barW+8}" y="${y+rowH/2+4}" font-size="12" fill="#F6F7FC" font-family="'IBM Plex Mono',monospace">${d.value.toFixed(1)}%</text>
+      </g>`;
   });
+  el.innerHTML = `<svg viewBox="0 0 ${w} ${h}" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">${rows}</svg>`;
+}
+
+function radarChart(containerId, axes, series){
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const size = 260, cx = size/2, cy = size/2 - 4, R = 80, minV = 50, maxV = 95, n = axes.length;
+  const angleFor = i => -Math.PI/2 + i*(2*Math.PI/n);
+  const pointFor = (i, v) => {
+    const frac = Math.max(0, Math.min(1, (v-minV)/(maxV-minV)));
+    const a = angleFor(i);
+    return [cx + R*frac*Math.cos(a), cy + R*frac*Math.sin(a)];
+  };
+  let grid = '';
+  [0.33,0.66,1].forEach(frac=>{
+    const pts = axes.map((_,i)=>{ const a=angleFor(i); return `${cx+R*frac*Math.cos(a)},${cy+R*frac*Math.sin(a)}`; }).join(' ');
+    grid += `<polygon points="${pts}" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>`;
+  });
+  let axesSvg = '';
+  axes.forEach((label,i)=>{
+    const a = angleFor(i);
+    const x2 = cx+R*Math.cos(a), y2 = cy+R*Math.sin(a);
+    const lx = cx+(R+26)*Math.cos(a), ly = cy+(R+26)*Math.sin(a);
+    axesSvg += `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+      <text x="${lx}" y="${ly}" text-anchor="middle" font-size="11.5" fill="#AEB4D6" font-family="Inter,sans-serif">${label}</text>`;
+  });
+  let dataSvg = '';
+  series.forEach(s=>{
+    const pts = s.values.map((v,i)=>pointFor(i,v).join(',')).join(' ');
+    dataSvg += `<polygon points="${pts}" fill="${s.fillColor}" stroke="${s.color}" stroke-width="2"/>`;
+    s.values.forEach((v,i)=>{ const [x,y]=pointFor(i,v); dataSvg += `<circle cx="${x}" cy="${y}" r="4.5" fill="${s.color}" style="cursor:help;"><title>${s.label} — ${axes[i]}: ${v}</title></circle>`; });
+  });
+  const legend = series.map(s=>`<span style="display:inline-flex;align-items:center;gap:6px;margin-right:16px;">
+    <span style="width:8px;height:8px;border-radius:50%;background:${s.color};display:inline-block;"></span>
+    <span style="font-size:12px;color:#AEB4D6;">${s.label}</span></span>`).join('');
+  el.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;">
+    <svg viewBox="0 0 ${size} ${size}" style="width:100%;max-width:260px;height:auto;" preserveAspectRatio="xMidYMid meet">${grid}${axesSvg}${dataSvg}</svg>
+    <div style="margin-top:8px;">${legend}</div></div>`;
+}
+
+function doughnutChart(containerId, segments){
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const size = 150, cx = size/2, cy = size/2, r = 55, strokeW = 22;
+  const circumference = 2*Math.PI*r;
+  const total = segments.reduce((a,s)=>a+s.value,0) || 1;
+  let offset = 0, circles = '';
+  segments.forEach(s=>{
+    const len = (s.value/total)*circumference;
+    circles += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.color}" stroke-width="${strokeW}" style="cursor:help;"
+      stroke-dasharray="${len} ${circumference-len}" stroke-dashoffset="${-offset}" transform="rotate(-90 ${cx} ${cy})"><title>${s.tooltip || s.label + ': ' + s.value + ' candidatos'}</title></circle>`;
+    offset += len;
+  });
+  const legend = segments.map(s=>`<div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#AEB4D6;margin-top:7px;">
+    <span style="width:9px;height:9px;border-radius:50%;background:${s.color};display:inline-block;flex:none;"></span>
+    <span>${s.label} — ${s.value} candidatos</span></div>`).join('');
+  el.innerHTML = `<div style="display:flex;gap:20px;align-items:center;height:100%;justify-content:center;">
+    <svg viewBox="0 0 ${size} ${size}" width="130" height="130" style="flex:none;">${circles}</svg>
+    <div>${legend}</div></div>`;
+}
+
+function stackedBarChart(containerId, segments){
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const total = segments.reduce((a,s)=>a+s.value,0) || 1;
+  const w = 600, h = 38;
+  let x = 0, rects = '';
+  segments.forEach(s=>{
+    const segW = (s.value/total)*w;
+    rects += `<rect x="${x}" y="0" width="${segW}" height="${h}" fill="${s.color}" style="cursor:help;"><title>${s.tooltip || s.label + ': ' + s.value + ' candidatos'}</title></rect>`;
+    x += segW;
+  });
+  const legend = segments.map(s=>`<div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#AEB4D6;">
+    <span style="width:9px;height:9px;border-radius:50%;background:${s.color};display:inline-block;"></span>
+    <span>${s.label} (${s.value})</span></div>`).join('');
+  el.innerHTML = `<div style="display:flex;flex-direction:column;justify-content:center;height:100%;gap:16px;">
+    <svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}" style="border-radius:10px;overflow:hidden;display:block;">${rects}</svg>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;">${legend}</div></div>`;
+}
+
+try {
+  // 1. Channel — horizontal bar, shaded by relative performance (operational metric, ranking is fine here)
+  hBarChart('chartChannel', topCh.map((r,i)=>({
+    label:r.source_channel, value:r.rate, color:i===0?ORANGE:`rgba(78,95,199,${(0.9-i*0.09).toFixed(2)})`,
+    tooltip:`Coluna: source_channel = "${r.source_channel}" • ${r.hires} contratados de ${r.total} candidatos (${r.rate}%)`
+  })));
 
   // 2. Scores — radar, compares the "shape" of hired vs not-hired across 3 dimensions
   const nh = D.scores_by_hired.find(r=>r.hired===false);
   const h = D.scores_by_hired.find(r=>r.hired===true);
-  new Chart(document.getElementById('chartScores'), {
-    type:'radar',
-    data:{labels:['Técnico','Comportamental','Gestor'],
-      datasets:[
-        {label:'Contratado', data:[h.technical_test_score,h.behavior_score,h.manager_score], backgroundColor:'rgba(232,121,74,0.22)', borderColor:ORANGE, pointBackgroundColor:ORANGE, borderWidth:2},
-        {label:'Não contratado', data:[nh.technical_test_score,nh.behavior_score,nh.manager_score], backgroundColor:'rgba(255,255,255,0.05)', borderColor:'rgba(255,255,255,0.4)', pointBackgroundColor:'rgba(255,255,255,0.7)', borderWidth:2}
-      ]},
-    options:{responsive:true, maintainAspectRatio:false,
-      scales:{ r:{ angleLines:{color:'rgba(255,255,255,0.10)'}, grid:{color:'rgba(255,255,255,0.10)'},
-        pointLabels:{color:'#AEB4D6', font:{size:11.5}}, suggestedMin:50, suggestedMax:95, ticks:{display:false, backdropColor:'transparent'} } },
-      plugins:{legend:{position:'bottom', labels:{color:'#AEB4D6', usePointStyle:true, boxWidth:8, padding:16}}}}
-  });
+  radarChart('chartScores', ['Técnico','Comportamental','Gestor'], [
+    {label:'Contratado', color:ORANGE, fillColor:'rgba(232,121,74,0.22)', values:[h.technical_test_score,h.behavior_score,h.manager_score]},
+    {label:'Não contratado', color:'rgba(255,255,255,0.75)', fillColor:'rgba(255,255,255,0.05)', values:[nh.technical_test_score,nh.behavior_score,nh.manager_score]},
+  ]);
 
   // 3. Recruiter — horizontal bar, single neutral color, ALPHABETICAL order (deliberately not ranked)
   const recAlpha = [...D.by_recruiter].sort((a,b)=>a.recruiter.localeCompare(b.recruiter));
-  new Chart(document.getElementById('chartRecruiter'), {
-    type:'bar',
-    data:{labels:recAlpha.map(r=>r.recruiter), datasets:[{data:recAlpha.map(r=>r.rate), backgroundColor:'rgba(136,145,224,0.55)', borderRadius:6, maxBarThickness:30}]},
-    options:{indexAxis:'y', responsive:true, maintainAspectRatio:false,
-      plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>c.formattedValue+'%'}}},
-      scales:{ x:{beginAtZero:true, ...gridOpt, ticks:{...gridOpt.ticks, callback:v=>v+'%'}}, y:{grid:{display:false}, ticks:{color:'#AEB4D6'}} }}
-  });
+  hBarChart('chartRecruiter', recAlpha.map(r=>({
+    label:r.recruiter, value:r.rate, color:INDIGO_SOFT,
+    tooltip:`Coluna: recruiter = "${r.recruiter}" • ${r.hires} contratados de ${r.total} candidatos (${r.rate}%)`
+  })), {padL:100});
 
   // 4. Signal — doughnut for composition (how many notes fall in each bucket)
   const sigSorted = [...D.signal_conv].sort((a,b)=>b.total-a.total);
-  new Chart(document.getElementById('chartSignal'), {
-    type:'doughnut',
-    data:{labels:sigSorted.map(r=>sigLabel[r.note_signal]), datasets:[{data:sigSorted.map(r=>r.total), backgroundColor:[INDIGO_D,ORANGE,'rgba(255,255,255,0.16)'], borderWidth:0}]},
-    options:{responsive:true, maintainAspectRatio:false, cutout:'66%',
-      plugins:{legend:{position:'bottom', labels:{color:'#AEB4D6', usePointStyle:true, boxWidth:8}}}}
-  });
+  doughnutChart('chartSignal', sigSorted.map((r,i)=>({
+    label:sigLabel[r.note_signal], value:r.total, color:[INDIGO_D,ORANGE,GREY][i]||GREY,
+    tooltip:`Coluna: note_signal = "${r.note_signal}" • ${r.total} candidatos com esse sinal na nota • taxa de contratação: ${fmtPct(r.rate)}`
+  })));
   document.getElementById('signal-chips').innerHTML = sigSorted.map(r =>
-    `<div class="chip"><div class="chip-val mono">${fmtPct(r.rate)}</div><div class="chip-label">conversão · ${sigLabel[r.note_signal]}</div></div>`).join('');
+    `<div class="chip" title="Candidatos com nota de sinal &quot;${r.note_signal}&quot; que foram contratados (coluna hired), dividido pelo total desse grupo."><div class="chip-val mono">${fmtPct(r.rate)}</div><div class="chip-label">conversão · ${sigLabel[r.note_signal]}</div></div>`).join('');
 
   // 5. Pipeline ativo — single 100% stacked horizontal bar, 3 tiers instead of a 5-point ranked scale
   const ps = D.persist_summary;
   const low = (ps['0']||0)+(ps['1']||0), mid = ps['2']||0, high = (ps['3']||0)+(ps['4']||0);
-  const total = low+mid+high;
-  new Chart(document.getElementById('chartPersist'), {
-    type:'bar',
-    data:{labels:['Pipeline ativo'], datasets:[
-      {label:'Reconsiderar prioridade', data:[low], backgroundColor:ORANGE, borderRadius:{topLeft:8,bottomLeft:8}},
-      {label:'Acompanhar normalmente', data:[mid], backgroundColor:'rgba(255,255,255,0.20)'},
-      {label:'Priorizar follow-up', data:[high], backgroundColor:GOOD, borderRadius:{topRight:8,bottomRight:8}},
-    ]},
-    options:{indexAxis:'y', responsive:true, maintainAspectRatio:false,
-      scales:{ x:{stacked:true, display:false, max:total}, y:{stacked:true, display:false} },
-      plugins:{legend:{position:'bottom', labels:{color:'#AEB4D6', usePointStyle:true, boxWidth:8}},
-        tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${c.formattedValue} (${(c.raw/total*100).toFixed(0)}%)`}}}}
-  });
+  stackedBarChart('chartPersist', [
+    {label:'Reconsiderar prioridade', value:low, color:ORANGE, tooltip:`${low} candidatos ativos com Persist Score de 0 ou 1 ponto (ver seção 07 — Candidate Advisor, mesmo cálculo aplicado em massa)`},
+    {label:'Acompanhar normalmente', value:mid, color:'rgba(255,255,255,0.22)', tooltip:`${mid} candidatos ativos com Persist Score de 2 pontos`},
+    {label:'Priorizar follow-up', value:high, color:GOOD, tooltip:`${high} candidatos ativos com Persist Score de 3 ou 4 pontos`},
+  ]);
   document.getElementById('persist-chips').innerHTML = `
     <div class="chip"><div class="chip-val mono">${low}</div><div class="chip-label">reconsiderar (0–1 pt)</div></div>
     <div class="chip"><div class="chip-val mono">${mid}</div><div class="chip-label">acompanhar (2 pts)</div></div>
     <div class="chip"><div class="chip-val mono">${high}</div><div class="chip-label">priorizar (3–4 pts)</div></div>`;
 
 } catch(chartErr) {
-  console.warn('Gráficos não carregaram:', chartErr.message);
+  console.warn('Gráficos não renderizaram:', chartErr.message);
   document.querySelectorAll('.chart-wrap').forEach(el => {
-    el.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-lo);font-size:12.5px;text-align:center;padding:0 20px;">Gráfico indisponível offline — as tabelas e o Advisor abaixo continuam funcionando normalmente.</div>';
+    el.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-lo);font-size:12.5px;text-align:center;padding:0 20px;">Gráfico indisponível — as tabelas e o Advisor abaixo continuam funcionando normalmente.</div>';
   });
 }
 
