@@ -1,0 +1,602 @@
+candidate_id,recruiter_notes,note_theme,note_signal,hired
+1,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+2,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+3,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+4,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+5,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+6,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+7,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+8,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+9,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+10,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+11,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+12,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+13,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,True
+14,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+15,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+16,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+17,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+18,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+19,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+20,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,True
+21,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+22,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+23,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,True
+24,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+25,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+26,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+27,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+28,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+29,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+30,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+31,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+32,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+33,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+34,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,True
+35,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+36,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+37,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+38,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+39,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,True
+40,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+41,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+42,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+43,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+44,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+45,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+46,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,True
+47,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+48,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+49,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+50,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+51,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+52,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+53,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+54,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+55,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+56,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,True
+57,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+58,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+59,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+60,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+61,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+62,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+63,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+64,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+65,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+66,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+67,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+68,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+69,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+70,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+71,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+72,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+73,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+74,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+75,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+76,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+77,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+78,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+79,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+80,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+81,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+82,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+83,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+84,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+85,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+86,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+87,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,True
+88,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,True
+89,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+90,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+91,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+92,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+93,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+94,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+95,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+96,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+97,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+98,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+99,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+100,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+101,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+102,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+103,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+104,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+105,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+106,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+107,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+108,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+109,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+110,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,True
+111,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,True
+112,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+113,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+114,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+115,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+116,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+117,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+118,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+119,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+120,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+121,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+122,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+123,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+124,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+125,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+126,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,True
+127,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+128,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+129,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+130,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+131,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+132,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+133,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+134,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+135,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+136,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+137,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+138,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+139,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+140,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+141,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+142,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+143,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+144,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+145,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+146,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+147,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+148,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+149,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+150,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+151,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+152,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+153,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+154,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+155,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+156,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+157,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+158,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+159,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+160,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+161,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+162,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+163,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+164,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+165,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+166,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+167,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+168,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+169,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+170,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+171,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+172,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+173,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+174,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+175,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+176,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+177,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+178,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+179,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+180,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+181,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+182,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+183,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+184,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+185,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+186,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+187,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+188,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+189,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,True
+190,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+191,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+192,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,True
+193,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+194,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+195,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+196,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+197,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+198,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+199,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+200,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+201,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+202,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+203,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+204,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+205,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+206,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,True
+207,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+208,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+209,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+210,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+211,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,True
+212,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+213,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+214,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+215,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+216,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+217,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+218,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+219,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+220,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+221,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+222,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+223,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+224,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+225,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+226,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+227,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,True
+228,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+229,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,True
+230,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+231,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+232,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+233,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+234,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+235,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+236,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+237,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,True
+238,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+239,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+240,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,True
+241,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+242,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+243,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+244,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+245,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+246,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+247,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+248,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+249,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+250,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+251,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+252,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+253,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+254,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+255,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+256,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+257,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+258,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+259,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+260,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+261,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+262,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+263,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+264,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+265,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+266,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,True
+267,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+268,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+269,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+270,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+271,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+272,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+273,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+274,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+275,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+276,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+277,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+278,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+279,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+280,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+281,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+282,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,True
+283,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+284,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+285,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+286,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+287,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+288,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+289,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+290,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+291,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+292,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+293,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+294,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+295,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+296,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+297,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+298,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+299,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+300,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+301,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+302,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+303,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+304,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+305,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+306,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+307,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+308,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+309,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+310,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+311,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,True
+312,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+313,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+314,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+315,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+316,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+317,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+318,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+319,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+320,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,True
+321,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+322,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+323,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+324,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+325,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+326,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+327,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+328,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+329,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+330,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+331,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+332,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+333,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+334,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+335,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,True
+336,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+337,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+338,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+339,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+340,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+341,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+342,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+343,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+344,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+345,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+346,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+347,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+348,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+349,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,True
+350,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+351,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+352,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+353,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+354,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+355,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+356,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+357,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+358,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+359,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+360,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+361,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+362,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+363,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+364,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+365,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+366,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+367,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,True
+368,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+369,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+370,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+371,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,True
+372,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+373,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+374,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+375,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+376,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+377,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+378,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+379,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,True
+380,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+381,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,True
+382,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+383,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,True
+384,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,True
+385,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,True
+386,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+387,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+388,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+389,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+390,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+391,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+392,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+393,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+394,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+395,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,True
+396,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+397,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+398,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+399,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+400,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+401,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+402,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+403,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+404,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+405,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+406,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+407,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+408,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+409,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+410,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+411,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+412,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+413,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+414,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+415,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+416,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+417,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+418,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+419,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+420,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+421,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+422,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+423,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+424,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+425,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+426,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+427,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+428,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+429,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+430,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+431,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+432,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+433,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+434,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+435,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+436,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+437,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+438,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+439,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,True
+440,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+441,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+442,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+443,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+444,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+445,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+446,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+447,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+448,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+449,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+450,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+451,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,True
+452,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+453,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+454,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+455,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+456,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+457,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+458,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,True
+459,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+460,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+461,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+462,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,True
+463,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+464,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+465,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+466,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+467,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+468,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+469,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+470,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+471,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+472,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+473,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+474,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+475,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+476,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+477,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+478,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+479,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+480,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+481,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+482,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+483,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+484,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+485,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+486,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+487,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+488,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+489,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+490,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+491,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+492,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+493,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+494,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,True
+495,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+496,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+497,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+498,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+499,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+500,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,True
+501,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+502,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,True
+503,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+504,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+505,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+506,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+507,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+508,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+509,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+510,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,True
+511,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+512,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+513,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+514,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+515,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+516,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,True
+517,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+518,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+519,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+520,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+521,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+522,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+523,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+524,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+525,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+526,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+527,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+528,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+529,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+530,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+531,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+532,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+533,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+534,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+535,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+536,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+537,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+538,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+539,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+540,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+541,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+542,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,True
+543,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+544,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+545,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+546,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+547,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+548,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+549,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+550,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+551,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+552,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+553,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+554,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,True
+555,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+556,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+557,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+558,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+559,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+560,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+561,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+562,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+563,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+564,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+565,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+566,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+567,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+568,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+569,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+570,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+571,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+572,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,True
+573,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,True
+574,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+575,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+576,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+577,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+578,"Experiência sólida, mas expectativa salarial alta.",Atrito - Expectativa salarial,mixed,False
+579,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+580,Feedback positivo do gestor.,Positivo - Endosso do gestor,positive,False
+581,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+582,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+583,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+584,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+585,Perfil técnico acima da média.,Positivo - Forca tecnica,positive,False
+586,Bom potencial de evolução.,Positivo - Potencial de crescimento,positive,False
+587,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+588,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+589,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+590,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,False
+591,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+592,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+593,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+594,Demonstrou interesse claro na oportunidade.,Positivo - Engajamento,positive,False
+595,Boa comunicação e resposta rápida.,Positivo - Comunicacao/responsividade,positive,False
+596,Pontos fortes em execução e autonomia.,Positivo - Perfil comportamental,positive,True
+597,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+598,Pediu prazo adicional para retorno.,Risco - Indecisao/Timing,risk,False
+599,Apresentou aderência forte ao contexto da vaga.,Positivo - Fit com a vaga,positive,False
+600,Baixa responsividade nas etapas iniciais.,Risco - Engajamento,risk,False
+601,Perfil com forte aderência e processo acelerado.,Positivo - Fit forte + processo acelerado,positive,True

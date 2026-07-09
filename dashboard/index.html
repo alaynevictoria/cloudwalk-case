@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sourcing Intelligence — CloudWalk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg-deep:#080B22;
+    --bg-mid:#10163A;
+    --indigo:#2B3E9E;
+    --indigo-soft:#4E5FC7;
+    --indigo-pale:#8891E0;
+    --orange:#E8794A;
+    --orange-soft:#F2A67C;
+    --glass:rgba(255,255,255,0.055);
+    --glass-hi:rgba(255,255,255,0.10);
+    --glass-border:rgba(255,255,255,0.14);
+    --glass-border-hi:rgba(255,255,255,0.30);
+    --text-hi:#F6F7FC;
+    --text-mid:#AEB4D6;
+    --text-lo:#6E75A0;
+    --good:#6FD6B0;
+    --warn:#F2A67C;
+    --bad:#E8794A;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--bg-deep);color:var(--text-hi);font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;position:relative;overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Sora',sans-serif;margin:0;letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+
+  .bg-decor{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+  .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.55;}
+  .blob1{width:640px;height:640px;top:-260px;left:-180px;background:radial-gradient(circle,var(--indigo) 0%,transparent 70%);}
+  .blob2{width:560px;height:560px;top:120px;right:-220px;background:radial-gradient(circle,var(--orange) 0%,transparent 72%);opacity:0.20;}
+  .blob3{width:700px;height:700px;bottom:-320px;left:20%;background:radial-gradient(circle,#3A2E8C 0%,transparent 70%);opacity:0.5;}
+  .grain{position:fixed;inset:0;z-index:1;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,0.025) 1px,transparent 1px);background-size:3px 3px;}
+  main, header, footer{position:relative;z-index:2;}
+
+  .glass{
+    background:linear-gradient(180deg, var(--glass-hi), var(--glass));
+    backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);
+    border:1px solid var(--glass-border);border-radius:20px;
+    box-shadow:0 10px 40px rgba(3,5,20,0.45), inset 0 1px 0 rgba(255,255,255,0.10);
+  }
+  .glass-tight{border-radius:14px;}
+
+  header.hero{padding:56px 6vw 0;}
+  .brand-row{display:flex;align-items:center;gap:10px;margin-bottom:34px;}
+  .brand-mark{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--indigo-soft),var(--orange));flex:none;}
+  .brand-word{font-family:'Sora',sans-serif;font-weight:600;font-size:14px;color:var(--text-hi);letter-spacing:0.01em;}
+  .brand-tag{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--text-lo);letter-spacing:0.1em;text-transform:uppercase;margin-left:6px;padding-left:10px;border-left:1px solid var(--glass-border);}
+
+  .hero h1{font-size:clamp(30px,4vw,46px);font-weight:700;max-width:760px;line-height:1.12;color:var(--text-hi);}
+  .hero h1 .accent{background:linear-gradient(120deg,var(--orange-soft),var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero p.sub{color:var(--text-mid);max-width:560px;margin-top:14px;font-size:15px;line-height:1.6;}
+
+  .kpi-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin:34px 0 -50px;}
+  .kpi{padding:20px 22px;}
+  .kpi .num{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:27px;color:var(--text-hi);}
+  .kpi .label{font-size:12.5px;color:var(--text-mid);margin-top:5px;line-height:1.4;}
+  .kpi.accent .num{background:linear-gradient(135deg,var(--orange-soft),var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+  main{padding:100px 6vw 90px;max-width:1180px;margin:0 auto;}
+  section{margin-top:64px;}
+  .section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;}
+  .section-head .idx{font-family:'IBM Plex Mono',monospace;color:var(--text-lo);font-size:12px;}
+  .section-head h2{font-size:21px;color:var(--text-hi);}
+  .section-sub{color:var(--text-mid);font-size:13.7px;max-width:640px;margin:8px 0 24px;line-height:1.6;}
+
+  .journey-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+  @media (max-width:980px){.journey-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.journey-grid{grid-template-columns:1fr;}}
+  .journey-card{padding:20px 18px;display:flex;flex-direction:column;gap:10px;text-decoration:none;transition:transform .18s ease, border-color .18s ease;cursor:pointer;}
+  .journey-card:hover{transform:translateY(-3px);border-color:var(--glass-border-hi);}
+  .journey-step{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--orange-soft);letter-spacing:0.08em;text-transform:uppercase;}
+  .journey-card h3{font-size:15px;color:var(--text-hi);}
+  .journey-metric{font-family:'IBM Plex Mono',monospace;font-size:20px;color:var(--text-hi);}
+  .journey-card p{font-size:12px;color:var(--text-mid);line-height:1.5;margin:0;}
+
+  .grid-2{display:grid;grid-template-columns:1.1fr 0.9fr;gap:20px;}
+  @media (max-width:860px){.grid-2{grid-template-columns:1fr;}}
+  .panel{padding:22px 24px;}
+  .panel h3{font-size:14px;color:var(--text-hi);margin-bottom:14px;font-weight:600;}
+  .chart-wrap{position:relative;height:270px;}
+  .chart-wrap.short{height:190px;}
+
+  .funnel{display:flex;flex-direction:column;gap:7px;}
+  .funnel-row{display:grid;grid-template-columns:140px 1fr 84px;align-items:center;gap:12px;}
+  .funnel-label{font-size:12.5px;color:var(--text-mid);}
+  .funnel-bar-bg{background:rgba(255,255,255,0.07);border-radius:6px;height:24px;overflow:hidden;border:1px solid var(--glass-border);}
+  .funnel-bar{background:linear-gradient(90deg,var(--indigo-soft),var(--indigo));height:100%;transition:width .4s;}
+  .funnel-bar.hi{background:linear-gradient(90deg,var(--orange-soft),var(--orange));}
+  .funnel-val{font-family:'IBM Plex Mono',monospace;font-size:12.5px;text-align:right;color:var(--text-hi);}
+
+  .insight{border-left:3px solid var(--indigo-soft);background:rgba(78,95,199,0.14);padding:14px 18px;border-radius:0 12px 12px 0;font-size:13px;line-height:1.6;color:var(--text-hi);margin-top:14px;}
+  .insight.warn{border-left-color:var(--orange);background:rgba(232,121,74,0.13);}
+  .insight.learn{border-left-color:var(--good);background:rgba(111,214,176,0.10);}
+  .insight b{font-weight:600;color:#fff;}
+
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th{text-align:left;font-weight:500;color:var(--text-lo);font-size:11px;text-transform:uppercase;letter-spacing:0.05em;padding:8px 10px;border-bottom:1px solid var(--glass-border);}
+  td{padding:9px 10px;border-bottom:1px solid var(--glass-border);color:var(--text-mid);}
+  td.num{font-family:'IBM Plex Mono',monospace;text-align:right;color:var(--text-hi);}
+  tr:last-child td{border-bottom:none;}
+
+  .chip-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+  .chip{display:flex;flex-direction:column;gap:2px;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);min-width:110px;}
+  .chip .chip-val{font-family:'IBM Plex Mono',monospace;font-size:16px;color:var(--text-hi);}
+  .chip .chip-label{font-size:11px;color:var(--text-mid);}
+
+  .reco-list{display:flex;flex-direction:column;gap:12px;}
+  .reco{display:grid;grid-template-columns:32px 1fr;gap:14px;padding:16px 18px;}
+  .reco .n{font-family:'IBM Plex Mono',monospace;color:var(--orange-soft);font-weight:600;font-size:14px;}
+  .reco h4{font-size:14px;margin-bottom:4px;font-weight:600;color:var(--text-hi);}
+  .reco p{margin:0;font-size:12.7px;color:var(--text-mid);line-height:1.55;}
+
+  .advisor-panel{padding:28px 28px 30px;}
+  .advisor-badge{display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.09em;text-transform:uppercase;color:var(--orange-soft);background:rgba(232,121,74,0.12);border:1px solid rgba(232,121,74,0.3);padding:5px 11px;border-radius:100px;margin-bottom:14px;}
+  .advisor-badge .pulse{width:6px;height:6px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 0 rgba(232,121,74,0.6);animation:pulse 2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(232,121,74,0.5);}70%{box-shadow:0 0 0 7px rgba(232,121,74,0);}100%{box-shadow:0 0 0 0 rgba(232,121,74,0);}}
+
+  .advisor-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px;}
+  @media (max-width:900px){.advisor-grid{grid-template-columns:1fr;}}
+
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+  .field label{font-size:11.5px;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.04em;}
+  .field select, .field input{
+    background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:var(--text-hi);
+    border-radius:10px;padding:10px 12px;font-family:'Inter',sans-serif;font-size:13.5px;outline:none;transition:border-color .15s;
+  }
+  .field select:focus, .field input:focus{border-color:var(--indigo-soft);}
+  .field-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+  @media (max-width:520px){.field-row{grid-template-columns:1fr;}}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:linear-gradient(135deg,var(--indigo-soft),var(--indigo));color:#fff;border:none;border-radius:11px;padding:12px 20px;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:13.5px;cursor:pointer;
+    box-shadow:0 6px 20px rgba(43,62,158,0.35);transition:transform .15s, box-shadow .15s, opacity .15s;width:100%;
+  }
+  .btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 8px 26px rgba(43,62,158,0.45);}
+  .btn.ghost{background:rgba(255,255,255,0.06);box-shadow:none;border:1px solid var(--glass-border);}
+  .btn.ghost:hover{border-color:var(--glass-border-hi);}
+  .btn:disabled{opacity:0.4;cursor:not-allowed;transform:none;box-shadow:none;}
+  .form-hint{font-size:11.5px;color:var(--text-lo);margin-top:-6px;min-height:14px;}
+
+  .verdict-card{padding:20px;border-radius:16px;margin-top:16px;min-height:120px;}
+  .verdict-tier{font-family:'Sora',sans-serif;font-weight:700;font-size:19px;margin-bottom:6px;}
+  .verdict-tier.persist{color:var(--good);}
+  .verdict-tier.monitor{color:var(--orange-soft);}
+  .verdict-tier.low{color:#F08C7B;}
+  .verdict-score{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text-mid);margin-bottom:14px;}
+  .verdict-factors{display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:var(--text-mid);}
+  .verdict-factors .f{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--glass-border);padding-bottom:6px;}
+  .verdict-factors .f b{color:var(--text-hi);font-weight:500;}
+  .verdict-factors .f .pt{font-family:'IBM Plex Mono',monospace;flex:none;}
+  .verdict-empty{color:var(--text-lo);font-size:13px;padding:30px 10px;text-align:center;}
+
+  .chat-box{margin-top:18px;padding-top:18px;border-top:1px solid var(--glass-border);}
+  .chat-log{display:flex;flex-direction:column;gap:10px;max-height:280px;overflow-y:auto;margin-bottom:12px;padding-right:4px;}
+  .chat-msg{font-size:13px;line-height:1.6;padding:11px 14px;border-radius:12px;}
+  .chat-msg.user{background:rgba(43,62,158,0.25);color:var(--text-hi);align-self:flex-end;max-width:85%;}
+  .chat-msg.assistant{background:rgba(255,255,255,0.06);color:var(--text-mid);border:1px solid var(--glass-border);}
+  .chat-msg.assistant b{color:var(--text-hi);}
+  .chat-input-row{display:flex;gap:8px;}
+  .chat-input-row input{flex:1;}
+  .api-note{font-size:11px;color:var(--text-lo);line-height:1.6;margin-top:10px;}
+  .key-collapsed{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);}
+  .key-collapsed span{font-size:12.5px;color:var(--text-mid);}
+  .key-status{width:7px;height:7px;border-radius:50%;background:var(--text-lo);flex:none;}
+  .key-status.on{background:var(--good);}
+
+  .design-notes{display:flex;flex-direction:column;gap:12px;}
+  .design-note{display:grid;grid-template-columns:26px 1fr;gap:12px;padding:16px 18px;}
+  .design-note .tag{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--indigo-pale);}
+  .design-note p{margin:0;font-size:13px;color:var(--text-mid);line-height:1.6;}
+  .design-note b{color:var(--text-hi);}
+
+  footer{padding:30px 6vw;color:var(--text-lo);font-size:12px;border-top:1px solid var(--glass-border);}
+</style>
+</head>
+<body>
+
+<div class="bg-decor"><div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div></div>
+<div class="grain"></div>
+
+<header class="hero">
+  <div class="brand-row">
+    <div class="brand-mark"></div>
+    <span class="brand-word">cloudwalk</span>
+    <span class="brand-tag">Sourcing Intelligence</span>
+  </div>
+  <h1>Do sourcing à contratação: onde o funil ganha e onde <span class="accent">perde</span>.</h1>
+  <p class="sub">601 candidatos, jan–jun/2025. Um painel de uso diário — conversão por etapa, sinais que preveem avanço, e um Candidate Advisor para decidir, candidato a candidato, se vale a pena insistir.</p>
+
+  <div class="kpi-strip">
+    <div class="glass glass-tight kpi accent"><div class="num mono" id="kpi-total">—</div><div class="label">Candidatos sourced</div></div>
+    <div class="glass glass-tight kpi accent"><div class="num mono" id="kpi-rate">—</div><div class="label">Taxa geral de contratação</div></div>
+    <div class="glass glass-tight kpi"><div class="num mono" id="kpi-drop">—</div><div class="label">Nunca respondem ao 1º contato</div></div>
+    <div class="glass glass-tight kpi"><div class="num mono" id="kpi-variacao">—</div><div class="label">Variação de prática no time — oportunidade de aprendizagem</div></div>
+  </div>
+</header>
+
+<main>
+
+  <section id="journey-section" style="margin-top:0;">
+    <div class="section-head"><span class="idx">01</span><h2>A jornada do candidato</h2></div>
+    <p class="section-sub">Cada etapa é onde uma decisão real acontece no dia a dia do recrutamento. Clique em qualquer cartão para ver a análise completa daquele momento.</p>
+    <div class="journey-grid">
+      <a class="glass journey-card" href="#channel-section">
+        <span class="journey-step">Sourcing</span>
+        <div class="journey-metric" id="j-channel">—</div>
+        <h3>Qual canal converte melhor</h3>
+        <p>Onde investir esforço de sourcing — não por volume, por conversão real em contratação.</p>
+      </a>
+      <a class="glass journey-card" href="#funnel-section">
+        <span class="journey-step">Engajamento</span>
+        <div class="journey-metric" id="j-drop">—</div>
+        <h3>Onde a probabilidade cai</h3>
+        <p>O maior degrau de perda do funil acontece antes de qualquer avaliação técnica.</p>
+      </a>
+      <a class="glass journey-card" href="#scores-section">
+        <span class="journey-step">Avaliação</span>
+        <div class="journey-metric" id="j-scores">—</div>
+        <h3>Sinais de avanço</h3>
+        <p>O que, objetivamente, diferencia quem é contratado de quem não é.</p>
+      </a>
+      <a class="glass journey-card" href="#learning-section">
+        <span class="journey-step">Aprendizagem</span>
+        <div class="journey-metric" id="j-recruiter">—</div>
+        <h3>Trocas de prática no time</h3>
+        <p>Onde a variação é maior — e como transformar isso em aprendizagem coletiva, não ranking.</p>
+      </a>
+      <a class="glass journey-card" href="#advisor-section">
+        <span class="journey-step">Decisão</span>
+        <div class="journey-metric">Advisor</div>
+        <h3>Vale insistir?</h3>
+        <p>Ferramenta interativa para decidir, candidato a candidato, com base nos padrões acima.</p>
+      </a>
+    </div>
+  </section>
+
+  <section id="funnel-section">
+    <div class="section-head"><span class="idx">02</span><h2>Funil geral</h2></div>
+    <p class="section-sub">Sourced → resposta → screening → entrevista → teste → oferta → contratado.</p>
+    <div class="glass panel">
+      <div class="funnel" id="funnel"></div>
+      <div class="insight warn" id="funnel-insight"></div>
+    </div>
+  </section>
+
+  <section id="channel-section">
+    <div class="section-head"><span class="idx">03</span><h2>Conversão por canal de sourcing</h2></div>
+    <p class="section-sub">Onde investir esforço de sourcing no próximo trimestre — ordenado por taxa de contratação, não por volume de candidatos gerados.</p>
+    <div class="glass panel">
+      <div class="chart-wrap"><canvas id="chartChannel"></canvas></div>
+      <div class="insight" id="channel-insight"></div>
+    </div>
+  </section>
+
+  <section id="scores-section">
+    <div class="section-head"><span class="idx">04</span><h2>Scores e velocidade</h2></div>
+    <p class="section-sub">O que diferencia, na média, quem é contratado de quem não é — os três perfis de avaliação sobrepostos.</p>
+    <div class="grid-2">
+      <div class="glass panel"><h3>Perfil de score: contratado vs. não contratado</h3><div class="chart-wrap"><canvas id="chartScores"></canvas></div></div>
+      <div class="glass panel">
+        <h3>Tempo médio (dias)</h3>
+        <table><thead><tr><th></th><th class="num">Resposta</th><th class="num">Duração no processo</th></tr></thead><tbody id="velocity-table"></tbody></table>
+        <div class="insight">Contratados ficam <b>~3,5x mais tempo</b> no funil. Fechar um processo rápido demais como "sem fit" pode estar cortando candidatos antes do tempo natural de maturação.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="learning-section">
+    <div class="section-head"><span class="idx">05</span><h2>Aprendizagem entre pares</h2></div>
+    <p class="section-sub">A variação de conversão entre recrutadores(as) é o maior sinal de todo o funil — maior até que a variação entre canais. Isso não é um placar de desempenho individual: é um mapa de onde há prática rica pra compartilhar. Por isso o gráfico abaixo está em ordem alfabética, não em ranking.</p>
+    <div class="glass panel">
+      <div class="chart-wrap"><canvas id="chartRecruiter"></canvas></div>
+      <div class="insight learn" id="recruiter-insight"></div>
+    </div>
+  </section>
+
+  <section id="ai-section">
+    <div class="section-head"><span class="idx">06</span><h2>IA aplicada — sinal das notas de recrutador</h2></div>
+    <p class="section-sub">Os 11 padrões de nota registrados foram classificados pelo Claude (Anthropic) em tema e sinal (positivo / risco / misto), simulando um classificador de "automated candidate feedback" em produção.</p>
+    <div class="grid-2">
+      <div class="glass panel">
+        <h3>Composição das notas registradas</h3>
+        <div class="chart-wrap short"><canvas id="chartSignal"></canvas></div>
+        <div class="chip-row" id="signal-chips"></div>
+      </div>
+      <div class="glass panel">
+        <h3>Achado</h3>
+        <div class="insight warn" style="margin-top:0;">O sinal classificado <b>não separa bem</b> quem é contratado: risco converte 8,0%, positivo converte 7,4%. "Misto" (atrito salarial) converte mais (14,0%) — objeção de salário não é motivo de descarte automático.</div>
+        <div class="insight">Por isso o Candidate Advisor, abaixo, dá <b>peso baixo</b> à nota qualitativa e prioriza scores objetivos e velocidade de resposta.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="advisor-section">
+    <div class="section-head"><span class="idx">07</span><h2>Candidate Advisor</h2></div>
+    <p class="section-sub">Preencha os dados de um candidato ativo para ver se vale a pena insistir — o veredito usa exatamente os padrões das seções acima, com peso explícito para cada fator.</p>
+
+    <div class="glass advisor-panel">
+      <span class="advisor-badge"><span class="pulse"></span>Motor de recomendação</span>
+
+      <div class="advisor-grid">
+        <div id="advisor-form">
+          <div class="field-row">
+            <div class="field"><label>Canal</label><select id="in-channel"></select></div>
+            <div class="field"><label>Recrutador(a)</label><select id="in-recruiter"></select></div>
+            <div class="field"><label>Senioridade</label><select id="in-seniority"></select></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Score técnico</label><input type="number" id="in-tech" min="0" max="100" placeholder="0–100"></div>
+            <div class="field"><label>Score comportamental</label><input type="number" id="in-behavior" min="0" max="100" placeholder="0–100"></div>
+            <div class="field"><label>Score do gestor</label><input type="number" id="in-manager" min="0" max="100" placeholder="0–100"></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Dias até responder</label><input type="number" id="in-response" min="0" placeholder="ex: 3"></div>
+            <div class="field"><label>Sinal da nota</label>
+              <select id="in-signal">
+                <option value="positive">Positivo</option>
+                <option value="mixed">Misto</option>
+                <option value="risk">Risco</option>
+              </select>
+            </div>
+            <div class="field" style="justify-content:flex-end;"><button class="btn" id="btn-evaluate" disabled>Avaliar candidato</button></div>
+          </div>
+          <div class="form-hint" id="form-hint">Preencha os 4 campos numéricos para habilitar a avaliação.</div>
+        </div>
+
+        <div>
+          <div class="glass glass-tight verdict-card" id="verdict-card">
+            <div class="verdict-empty">Preencha os campos e clique em "Avaliar candidato" para ver o veredito.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-box">
+        <h3 style="margin-bottom:10px;">Pergunte em linguagem natural <span style="color:var(--text-lo);font-weight:400;font-size:12px;">(opcional — usa sua própria chave da API Anthropic)</span></h3>
+
+        <div id="key-collapsed" class="key-collapsed">
+          <span><span class="key-status" id="key-status-dot"></span> <span id="key-status-text">Nenhuma chave configurada — o chat fica desabilitado até você adicionar uma.</span></span>
+          <button class="btn ghost" id="btn-toggle-key" style="width:auto;padding:8px 14px;">Adicionar chave</button>
+        </div>
+        <div id="key-input-row" style="display:none;margin-top:10px;" class="field-row">
+          <div class="field" style="grid-column:1/3;"><label>Chave da API Anthropic</label><input type="password" id="in-apikey" placeholder="sk-ant-..."></div>
+          <div class="field" style="justify-content:flex-end;"><button class="btn" id="btn-save-key">Ativar chat</button></div>
+        </div>
+
+        <div class="chat-log" id="chat-log"></div>
+        <div class="chat-input-row">
+          <input type="text" id="in-question" placeholder="ex: esse candidato demorou 8 dias pra responder mas tem score técnico 90 — vale insistir?" disabled>
+          <button class="btn" id="btn-ask" style="width:auto;padding:11px 18px;" disabled>Perguntar</button>
+        </div>
+        <p class="api-note">Sua chave fica apenas na memória desta aba — não é salva, enviada a nenhum servidor além da Anthropic, nem incluída neste arquivo. Ao fechar ou atualizar a página, ela é perdida. Não faça commit de chaves em repositórios públicos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="persist-section">
+    <div class="section-head"><span class="idx">08</span><h2>Panorama do pipeline ativo</h2></div>
+    <p class="section-sub">Aplicando a mesma lógica do Advisor aos 360 candidatos ainda em processo — três faixas de prioridade, não uma lista ranqueada.</p>
+    <div class="glass panel">
+      <div class="chart-wrap short"><canvas id="chartPersist"></canvas></div>
+      <div class="chip-row" id="persist-chips"></div>
+    </div>
+  </section>
+
+  <section id="notes-section">
+    <div class="section-head"><span class="idx">09</span><h2>Escolhas deliberadas neste painel</h2></div>
+    <p class="section-sub">Duas decisões que valem explicar, porque não são óbvias.</p>
+    <div class="design-notes">
+      <div class="glass design-note">
+        <span class="tag">DESIGN</span>
+        <p><b>Identidade visual alinhada à marca CloudWalk</b> — navy/indigo profundo, painéis em liquid glass, tipografia geométrica e o formato de KPI empilhado (número grande + label) que aparece no material institucional de vocês. A ideia não foi decorar um dashboard genérico, foi fazer algo que pudesse existir dentro do produto de fato.</p>
+      </div>
+      <div class="glass design-note">
+        <span class="tag">PEOPLE &amp; L&amp;D</span>
+        <p><b>Dados de recrutador sem ranking.</b> A seção "Aprendizagem entre pares" mostra a mesma métrica que um ranking mostraria, mas em ordem alfabética, com uma cor só e sem "vencedores" — porque o objetivo de expor essa variação é abrir espaço pra comunidade de prática e shadowing, não pra avaliação pública de desempenho individual. É uma escolha de design pensada com lente de aprendizagem organizacional, não só de visualização de dados.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="reco-section">
+    <div class="section-head"><span class="idx">10</span><h2>Recomendações para o time</h2></div>
+    <div class="reco-list">
+      <div class="glass reco"><div class="n">01</div><div><h4>Redistribuir esforço de sourcing por conversão, não por volume</h4><p>Github e Inbound convertem ~2x mais que Indicação e Evento. Priorizar esses canais no plano do próximo trimestre.</p></div></div>
+      <div class="glass reco"><div class="n">02</div><div><h4>Criar rodadas de compartilhamento de prática entre recrutadores</h4><p>A variação de conversão entre recrutadores (volume comparável) é maior que a variação entre canais — sinal de prática rica pra trocar, não de desempenho a cobrar. Formato sugerido: shadowing em pares ou comunidade de prática mensal.</p></div></div>
+      <div class="glass reco"><div class="n">03</div><div><h4>Atacar o gargalo de resposta inicial</h4><p>32% dos candidatos nunca respondem ao primeiro contato — a maior perda do funil. Testar variação de canal e cadência nos primeiros 3 dias.</p></div></div>
+      <div class="glass reco"><div class="n">04</div><div><h4>Usar o Candidate Advisor, não a impressão geral, para priorizar follow-up</h4><p>A nota qualitativa tem sinal fraco. Score objetivo + velocidade de resposta são os critérios que sustentam a decisão.</p></div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>Case técnico — Atração e Seleção, CloudWalk · Dataset fictício (mock_sourcing_dataset) · Metodologia completa em docs/Relatorio_Tecnico.pdf</footer>
+
+<script>
+const D = {"funnel": {"Sourced": 601, "Respondeu": 408, "Screening OK": 308, "Entrevista OK": 234, "Teste realizado": 201, "Oferta enviada": 62, "Contratado": 49}, "by_channel": [{"source_channel": "Github", "hires": 8, "total": 73, "rate": 11.0}, {"source_channel": "Inbound", "hires": 7, "total": 69, "rate": 10.1}, {"source_channel": "Hunting", "hires": 7, "total": 75, "rate": 9.3}, {"source_channel": "Banco de Talentos", "hires": 6, "total": 68, "rate": 8.8}, {"source_channel": "LinkedIn", "hires": 7, "total": 81, "rate": 8.6}, {"source_channel": "Comunidade", "hires": 7, "total": 89, "rate": 7.9}, {"source_channel": "Evento", "hires": 4, "total": 82, "rate": 4.9}, {"source_channel": "Indicação", "hires": 3, "total": 64, "rate": 4.7}], "by_recruiter": [{"recruiter": "Bruno", "hires": 15, "total": 98, "rate": 15.3}, {"recruiter": "Ana", "hires": 10, "total": 75, "rate": 13.3}, {"recruiter": "Carla", "hires": 9, "total": 101, "rate": 8.9}, {"recruiter": "Gustavo", "hires": 6, "total": 121, "rate": 5.0}, {"recruiter": "Diego", "hires": 5, "total": 103, "rate": 4.9}, {"recruiter": "Fernanda", "hires": 4, "total": 103, "rate": 3.9}], "by_seniority": [{"seniority": "Staff", "hires": 8, "total": 60, "rate": 13.3}, {"seniority": "Senior", "hires": 20, "total": 204, "rate": 9.8}, {"seniority": "Pleno", "hires": 16, "total": 228, "rate": 7.0}, {"seniority": "Junior", "hires": 5, "total": 109, "rate": 4.6}], "by_department": [{"department": "Tech", "hires": 16, "total": 143, "rate": 11.2}, {"department": "Data", "hires": 12, "total": 151, "rate": 7.9}, {"department": "People", "hires": 12, "total": 166, "rate": 7.2}, {"department": "Operations", "hires": 9, "total": 141, "rate": 6.4}], "by_decision": [{"decision_source": "Tech Panel", "hires": 13, "total": 144, "rate": 9.0}, {"decision_source": "TA Lead", "hires": 13, "total": 152, "rate": 8.6}, {"decision_source": "Hiring Manager", "hires": 13, "total": 165, "rate": 7.9}, {"decision_source": "Recruiter", "hires": 10, "total": 140, "rate": 7.1}], "by_workmode": [{"work_mode": "Híbrido", "hires": 20, "total": 185, "rate": 10.8}, {"work_mode": "Presencial", "hires": 19, "total": 215, "rate": 8.8}, {"work_mode": "Remoto", "hires": 10, "total": 201, "rate": 5.0}], "scores_by_hired": [{"hired": false, "technical_test_score": 72.9, "behavior_score": 74.0, "manager_score": 73.1}, {"hired": true, "technical_test_score": 82.4, "behavior_score": 80.1, "manager_score": 80.9}], "velocity_by_hired": [{"hired": false, "response_time_days": 6.0, "stage_duration_days": 9.3}, {"hired": true, "response_time_days": 5.7, "stage_duration_days": 32.7}], "rejection_counts": {"No response": 210, "Failed technical test": 25, "Timing mismatch": 24, "Low technical fit": 23, "Low engagement": 23, "Headcount closed": 22, "Salary mismatch": 18, "Accepted another offer": 18, "Culture add mismatch": 12}, "theme_conv": [{"note_theme": "Positivo - Fit forte + processo acelerado", "hires": 1, "total": 1, "rate": 100.0}, {"note_theme": "Atrito - Expectativa salarial", "hires": 8, "total": 57, "rate": 14.0}, {"note_theme": "Positivo - Comunicacao/responsividade", "hires": 6, "total": 52, "rate": 11.5}, {"note_theme": "Positivo - Perfil comportamental", "hires": 7, "total": 64, "rate": 10.9}, {"note_theme": "Positivo - Forca tecnica", "hires": 6, "total": 59, "rate": 10.2}, {"note_theme": "Risco - Engajamento", "hires": 6, "total": 72, "rate": 8.3}, {"note_theme": "Risco - Indecisao/Timing", "hires": 5, "total": 66, "rate": 7.6}, {"note_theme": "Positivo - Engajamento", "hires": 4, "total": 65, "rate": 6.2}, {"note_theme": "Positivo - Endosso do gestor", "hires": 3, "total": 52, "rate": 5.8}, {"note_theme": "Positivo - Potencial de crescimento", "hires": 2, "total": 55, "rate": 3.6}, {"note_theme": "Positivo - Fit com a vaga", "hires": 1, "total": 58, "rate": 1.7}], "signal_conv": [{"note_signal": "mixed", "hires": 8, "total": 57, "rate": 14.0}, {"note_signal": "risk", "hires": 11, "total": 138, "rate": 8.0}, {"note_signal": "positive", "hires": 30, "total": 406, "rate": 7.4}], "persist_summary": {"0": 19, "1": 86, "2": 133, "3": 83, "4": 39}, "overall_hire_rate": 8.2, "total_candidates": 601, "median_response_time_days": 6.0, "median_stage_duration_days": 6.0, "channels": ["Banco de Talentos", "Comunidade", "Evento", "Github", "Hunting", "Inbound", "Indicação", "LinkedIn"], "recruiters": ["Ana", "Bruno", "Carla", "Diego", "Fernanda", "Gustavo"], "seniorities": ["Junior", "Pleno", "Senior", "Staff"], "note_signals": ["positive", "mixed", "risk"]};
+const fmtPct = v => v.toFixed(1).replace('.', ',') + '%';
+const sigLabel = {positive:'Sinal positivo', risk:'Sinal de risco', mixed:'Sinal misto'};
+
+// ---------- KPI strip + journey cards ----------
+document.getElementById('kpi-total').textContent = D.total_candidates;
+document.getElementById('kpi-rate').textContent = fmtPct(D.overall_hire_rate);
+const dropPct = ((D.funnel['Sourced'] - D.funnel['Respondeu']) / D.funnel['Sourced'] * 100);
+document.getElementById('kpi-drop').textContent = fmtPct(dropPct);
+
+const topCh = [...D.by_channel].sort((a,b)=>b.rate-a.rate);
+const recByRate = [...D.by_recruiter].sort((a,b)=>b.rate-a.rate);
+const bestRec = recByRate[0], worstRec = recByRate[recByRate.length-1];
+const recVariation = (bestRec.rate/worstRec.rate);
+document.getElementById('kpi-variacao').textContent = recVariation.toFixed(1) + 'x';
+
+document.getElementById('j-channel').textContent = topCh[0].source_channel;
+document.getElementById('j-drop').textContent = fmtPct(dropPct);
+document.getElementById('j-scores').textContent = '+' + (D.scores_by_hired.find(r=>r.hired).technical_test_score - D.scores_by_hired.find(r=>!r.hired).technical_test_score).toFixed(0) + ' pts';
+document.getElementById('j-recruiter').textContent = recVariation.toFixed(1) + 'x';
+
+// ---------- funnel (bespoke, no charting lib needed) ----------
+const funnelWrap = document.getElementById('funnel');
+const steps = Object.entries(D.funnel);
+const maxV = steps[0][1];
+steps.forEach(([label, val], i) => {
+  const row = document.createElement('div');
+  row.className = 'funnel-row';
+  row.innerHTML = `<div class="funnel-label">${label}</div>
+    <div class="funnel-bar-bg"><div class="funnel-bar ${i===steps.length-1?'hi':''}" style="width:${(val/maxV*100).toFixed(1)}%"></div></div>
+    <div class="funnel-val mono">${val}</div>`;
+  funnelWrap.appendChild(row);
+});
+document.getElementById('funnel-insight').innerHTML =
+  `<b>${D.funnel['Sourced'] - D.funnel['Respondeu']} candidatos (${fmtPct(dropPct)})</b> nunca respondem ao primeiro contato — maior degrau de perda do funil, antes de qualquer avaliação técnica.`;
+
+document.getElementById('channel-insight').innerHTML =
+  `<b>${topCh[0].source_channel}</b> converte ${fmtPct(topCh[0].rate)}, quase o dobro de <b>${topCh[topCh.length-1].source_channel}</b> (${fmtPct(topCh[topCh.length-1].rate)}). Vale redistribuir esforço de sourcing priorizando os canais do topo desta lista.`;
+
+document.getElementById('recruiter-insight').innerHTML =
+  `A diferença entre a maior e a menor taxa de conversão do time é de <b>${recVariation.toFixed(1)}x</b> — maior que a diferença entre o melhor e o pior canal. Isso costuma significar prática valiosa acumulada por algumas pessoas do time que ainda não foi compartilhada com o restante — um bom ponto de partida para sessões de shadowing ou comunidade de prática, não uma métrica de avaliação individual.`;
+
+// ---------- charts (dark theme), guarded so an offline/CDN failure never
+// breaks the rest of the page (Candidate Advisor must keep working) ----------
+try {
+  if (typeof Chart === 'undefined') throw new Error('Chart.js indisponível (offline ou CDN bloqueado)');
+
+  Chart.defaults.font.family = "'Inter', sans-serif";
+  Chart.defaults.font.size = 12;
+  Chart.defaults.color = '#AEB4D6';
+  const INDIGO='#4E5FC7', INDIGO_D='#2B3E9E', ORANGE='#E8794A', ORANGE_S='#F2A67C', GOOD='#6FD6B0';
+  const gridOpt = { grid:{color:'rgba(255,255,255,0.07)'}, ticks:{color:'#AEB4D6'} };
+
+  // 1. Channel — horizontal bar, shaded by relative performance (operational metric, ranking is fine here)
+  new Chart(document.getElementById('chartChannel'), {
+    type:'bar',
+    data:{labels:topCh.map(r=>r.source_channel), datasets:[{data:topCh.map(r=>r.rate),
+      backgroundColor:topCh.map((r,i)=> i===0 ? ORANGE : `rgba(78,95,199,${0.9 - i*0.09})`), borderRadius:6, maxBarThickness:26}]},
+    options:{indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>c.formattedValue+'%'}}},
+      scales:{ x:{beginAtZero:true, ...gridOpt, ticks:{...gridOpt.ticks, callback:v=>v+'%'}}, y:{grid:{display:false}, ticks:{color:'#AEB4D6'}} }}
+  });
+
+  // 2. Scores — radar, compares the "shape" of hired vs not-hired across 3 dimensions
+  const nh = D.scores_by_hired.find(r=>r.hired===false);
+  const h = D.scores_by_hired.find(r=>r.hired===true);
+  new Chart(document.getElementById('chartScores'), {
+    type:'radar',
+    data:{labels:['Técnico','Comportamental','Gestor'],
+      datasets:[
+        {label:'Contratado', data:[h.technical_test_score,h.behavior_score,h.manager_score], backgroundColor:'rgba(232,121,74,0.22)', borderColor:ORANGE, pointBackgroundColor:ORANGE, borderWidth:2},
+        {label:'Não contratado', data:[nh.technical_test_score,nh.behavior_score,nh.manager_score], backgroundColor:'rgba(255,255,255,0.05)', borderColor:'rgba(255,255,255,0.4)', pointBackgroundColor:'rgba(255,255,255,0.7)', borderWidth:2}
+      ]},
+    options:{responsive:true, maintainAspectRatio:false,
+      scales:{ r:{ angleLines:{color:'rgba(255,255,255,0.10)'}, grid:{color:'rgba(255,255,255,0.10)'},
+        pointLabels:{color:'#AEB4D6', font:{size:11.5}}, suggestedMin:50, suggestedMax:95, ticks:{display:false, backdropColor:'transparent'} } },
+      plugins:{legend:{position:'bottom', labels:{color:'#AEB4D6', usePointStyle:true, boxWidth:8, padding:16}}}}
+  });
+
+  // 3. Recruiter — horizontal bar, single neutral color, ALPHABETICAL order (deliberately not ranked)
+  const recAlpha = [...D.by_recruiter].sort((a,b)=>a.recruiter.localeCompare(b.recruiter));
+  new Chart(document.getElementById('chartRecruiter'), {
+    type:'bar',
+    data:{labels:recAlpha.map(r=>r.recruiter), datasets:[{data:recAlpha.map(r=>r.rate), backgroundColor:'rgba(136,145,224,0.55)', borderRadius:6, maxBarThickness:30}]},
+    options:{indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}, tooltip:{callbacks:{label:c=>c.formattedValue+'%'}}},
+      scales:{ x:{beginAtZero:true, ...gridOpt, ticks:{...gridOpt.ticks, callback:v=>v+'%'}}, y:{grid:{display:false}, ticks:{color:'#AEB4D6'}} }}
+  });
+
+  // 4. Signal — doughnut for composition (how many notes fall in each bucket)
+  const sigSorted = [...D.signal_conv].sort((a,b)=>b.total-a.total);
+  new Chart(document.getElementById('chartSignal'), {
+    type:'doughnut',
+    data:{labels:sigSorted.map(r=>sigLabel[r.note_signal]), datasets:[{data:sigSorted.map(r=>r.total), backgroundColor:[INDIGO_D,ORANGE,'rgba(255,255,255,0.16)'], borderWidth:0}]},
+    options:{responsive:true, maintainAspectRatio:false, cutout:'66%',
+      plugins:{legend:{position:'bottom', labels:{color:'#AEB4D6', usePointStyle:true, boxWidth:8}}}}
+  });
+  document.getElementById('signal-chips').innerHTML = sigSorted.map(r =>
+    `<div class="chip"><div class="chip-val mono">${fmtPct(r.rate)}</div><div class="chip-label">conversão · ${sigLabel[r.note_signal]}</div></div>`).join('');
+
+  // 5. Pipeline ativo — single 100% stacked horizontal bar, 3 tiers instead of a 5-point ranked scale
+  const ps = D.persist_summary;
+  const low = (ps['0']||0)+(ps['1']||0), mid = ps['2']||0, high = (ps['3']||0)+(ps['4']||0);
+  const total = low+mid+high;
+  new Chart(document.getElementById('chartPersist'), {
+    type:'bar',
+    data:{labels:['Pipeline ativo'], datasets:[
+      {label:'Reconsiderar prioridade', data:[low], backgroundColor:ORANGE, borderRadius:{topLeft:8,bottomLeft:8}},
+      {label:'Acompanhar normalmente', data:[mid], backgroundColor:'rgba(255,255,255,0.20)'},
+      {label:'Priorizar follow-up', data:[high], backgroundColor:GOOD, borderRadius:{topRight:8,bottomRight:8}},
+    ]},
+    options:{indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      scales:{ x:{stacked:true, display:false, max:total}, y:{stacked:true, display:false} },
+      plugins:{legend:{position:'bottom', labels:{color:'#AEB4D6', usePointStyle:true, boxWidth:8}},
+        tooltip:{callbacks:{label:c=>`${c.dataset.label}: ${c.formattedValue} (${(c.raw/total*100).toFixed(0)}%)`}}}}
+  });
+  document.getElementById('persist-chips').innerHTML = `
+    <div class="chip"><div class="chip-val mono">${low}</div><div class="chip-label">reconsiderar (0–1 pt)</div></div>
+    <div class="chip"><div class="chip-val mono">${mid}</div><div class="chip-label">acompanhar (2 pts)</div></div>
+    <div class="chip"><div class="chip-val mono">${high}</div><div class="chip-label">priorizar (3–4 pts)</div></div>`;
+
+} catch(chartErr) {
+  console.warn('Gráficos não carregaram:', chartErr.message);
+  document.querySelectorAll('.chart-wrap').forEach(el => {
+    el.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-lo);font-size:12.5px;text-align:center;padding:0 20px;">Gráfico indisponível offline — as tabelas e o Advisor abaixo continuam funcionando normalmente.</div>';
+  });
+}
+
+const vTable = document.getElementById('velocity-table');
+D.velocity_by_hired.forEach(r=>{
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${r.hired? 'Contratado':'Não contratado'}</td><td class="num mono">${r.response_time_days}</td><td class="num mono">${r.stage_duration_days}</td>`;
+  vTable.appendChild(tr);
+});
+
+// =========================================================
+// CANDIDATE ADVISOR — Layer 1 (deterministic, explainable)
+// =========================================================
+const selChannel = document.getElementById('in-channel');
+const selRecruiter = document.getElementById('in-recruiter');
+const selSeniority = document.getElementById('in-seniority');
+D.channels.forEach(c => selChannel.innerHTML += `<option value="${c}">${c}</option>`);
+D.recruiters.forEach(r => selRecruiter.innerHTML += `<option value="${r}">${r}</option>`);
+D.seniorities.forEach(s => selSeniority.innerHTML += `<option value="${s}">${s}</option>`);
+
+const threshTech = (D.scores_by_hired.find(r=>r.hired).technical_test_score + D.scores_by_hired.find(r=>!r.hired).technical_test_score) / 2;
+const threshBeh = (D.scores_by_hired.find(r=>r.hired).behavior_score + D.scores_by_hired.find(r=>!r.hired).behavior_score) / 2;
+const threshMgr = (D.scores_by_hired.find(r=>r.hired).manager_score + D.scores_by_hired.find(r=>!r.hired).manager_score) / 2;
+
+function rateFor(list, key, val){
+  const row = list.find(r => r[key] === val);
+  return row ? row.rate : D.overall_hire_rate;
+}
+
+function evaluateCandidate(input){
+  const factors = [];
+  let score = 0;
+
+  const chRate = rateFor(D.by_channel, 'source_channel', input.channel);
+  const chPts = chRate >= D.overall_hire_rate ? 1.5 : 0;
+  score += chPts;
+  factors.push({label:`Canal (${input.channel})`, detail:`converte ${fmtPct(chRate)} vs. ${fmtPct(D.overall_hire_rate)} da média geral`, pts:chPts});
+
+  const recRate = rateFor(D.by_recruiter, 'recruiter', input.recruiter);
+  const recPts = recRate >= D.overall_hire_rate ? 1.5 : 0;
+  score += recPts;
+  factors.push({label:`Recrutador(a) (${input.recruiter})`, detail:`converte ${fmtPct(recRate)} vs. ${fmtPct(D.overall_hire_rate)} da média geral`, pts:recPts});
+
+  const senRate = rateFor(D.by_seniority, 'seniority', input.seniority);
+  const senPts = senRate >= D.overall_hire_rate ? 1 : 0;
+  score += senPts;
+  factors.push({label:`Senioridade (${input.seniority})`, detail:`converte ${fmtPct(senRate)} vs. ${fmtPct(D.overall_hire_rate)} da média geral`, pts:senPts});
+
+  const techPts = input.tech >= threshTech ? 2 : 0;
+  score += techPts;
+  factors.push({label:`Score técnico (${input.tech})`, detail:`limiar de referência: ${threshTech.toFixed(0)}`, pts:techPts});
+
+  const behPts = input.behavior >= threshBeh ? 1.5 : 0;
+  score += behPts;
+  factors.push({label:`Score comportamental (${input.behavior})`, detail:`limiar de referência: ${threshBeh.toFixed(0)}`, pts:behPts});
+
+  const mgrPts = input.manager >= threshMgr ? 1.5 : 0;
+  score += mgrPts;
+  factors.push({label:`Score do gestor (${input.manager})`, detail:`limiar de referência: ${threshMgr.toFixed(0)}`, pts:mgrPts});
+
+  const respPts = input.response <= D.median_response_time_days ? 1 : 0;
+  score += respPts;
+  factors.push({label:`Resposta em ${input.response} dia(s)`, detail:`mediana geral: ${D.median_response_time_days} dias`, pts:respPts});
+
+  factors.push({label:`Sinal da nota (${sigLabel[input.signal]})`, detail:`peso baixo — sinal fraco na análise (seção 6)`, pts:0});
+
+  let tier, tierLabel;
+  if (score >= 7){ tier='persist'; tierLabel='Persistir — prioridade alta'; }
+  else if (score >= 4){ tier='monitor'; tierLabel='Monitorar — acompanhar normalmente'; }
+  else { tier='low'; tierLabel='Baixa probabilidade — repriorizar'; }
+
+  return {score, maxScore:10, tier, tierLabel, factors};
+}
+
+let lastEvaluation = null;
+
+function renderVerdict(result){
+  const card = document.getElementById('verdict-card');
+  card.innerHTML = `
+    <div class="verdict-tier ${result.tier}">${result.tierLabel}</div>
+    <div class="verdict-score">Índice de prioridade: ${result.score.toFixed(1)} / ${result.maxScore}</div>
+    <div class="verdict-factors">
+      ${result.factors.map(f => `<div class="f"><span><b>${f.label}</b><br>${f.detail}</span><span class="pt">${f.pts>0?'+':''}${f.pts}</span></div>`).join('')}
+    </div>`;
+}
+
+// ---- form validation: the evaluate button only enables once all 4 numeric
+// fields are filled with plausible values, so an empty field can never
+// silently score as 0 and produce a misleading verdict. ----
+const numFields = ['in-tech','in-behavior','in-manager','in-response'];
+const btnEvaluate = document.getElementById('btn-evaluate');
+const formHint = document.getElementById('form-hint');
+
+function validateForm(){
+  const vals = numFields.map(id => document.getElementById(id).value.trim());
+  const allFilled = vals.every(v => v !== '');
+  let valid = allFilled;
+  if (allFilled) {
+    const [tech, beh, mgr, resp] = vals.map(Number);
+    valid = [tech,beh,mgr].every(v => v>=0 && v<=100) && resp >= 0;
+  }
+  btnEvaluate.disabled = !valid;
+  formHint.textContent = allFilled
+    ? (valid ? '' : 'Scores devem estar entre 0–100 e dias de resposta ≥ 0.')
+    : 'Preencha os 4 campos numéricos para habilitar a avaliação.';
+  return valid;
+}
+numFields.forEach(id => document.getElementById(id).addEventListener('input', validateForm));
+validateForm();
+
+btnEvaluate.addEventListener('click', () => {
+  if (!validateForm()) return;
+  const input = {
+    channel: selChannel.value,
+    recruiter: selRecruiter.value,
+    seniority: selSeniority.value,
+    tech: parseFloat(document.getElementById('in-tech').value),
+    behavior: parseFloat(document.getElementById('in-behavior').value),
+    manager: parseFloat(document.getElementById('in-manager').value),
+    response: parseFloat(document.getElementById('in-response').value),
+    signal: document.getElementById('in-signal').value,
+  };
+  const result = evaluateCandidate(input);
+  lastEvaluation = {input, result};
+  renderVerdict(result);
+});
+
+// =========================================================
+// CANDIDATE ADVISOR — Layer 2 (optional live chat via Anthropic API)
+// =========================================================
+let apiKey = null;
+const btnToggleKey = document.getElementById('btn-toggle-key');
+const keyInputRow = document.getElementById('key-input-row');
+const btnSaveKey = document.getElementById('btn-save-key');
+const inApiKey = document.getElementById('in-apikey');
+const keyStatusDot = document.getElementById('key-status-dot');
+const keyStatusText = document.getElementById('key-status-text');
+const inQuestion = document.getElementById('in-question');
+const btnAsk = document.getElementById('btn-ask');
+const chatLog = document.getElementById('chat-log');
+
+btnToggleKey.addEventListener('click', () => {
+  keyInputRow.style.display = keyInputRow.style.display === 'none' ? 'grid' : 'none';
+});
+
+btnSaveKey.addEventListener('click', () => {
+  const val = inApiKey.value.trim();
+  if (!val){ return; }
+  apiKey = val;
+  keyStatusDot.classList.add('on');
+  keyStatusText.textContent = 'Chave ativa nesta sessão — o chat está habilitado.';
+  keyInputRow.style.display = 'none';
+  inQuestion.disabled = false;
+  btnAsk.disabled = false;
+  inApiKey.value = '';
+});
+
+function addChatMsg(role, text){
+  const div = document.createElement('div');
+  div.className = `chat-msg ${role}`;
+  div.innerHTML = text;
+  chatLog.appendChild(div);
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+
+async function askAdvisor(){
+  const question = inQuestion.value.trim();
+  if (!question || !apiKey) return;
+  addChatMsg('user', question);
+  inQuestion.value = '';
+  btnAsk.disabled = true;
+  addChatMsg('assistant', '<i>Analisando…</i>');
+
+  const context = {
+    estatisticas_gerais: {
+      taxa_geral_contratacao: D.overall_hire_rate,
+      conversao_por_canal: D.by_channel,
+      conversao_por_recrutador: D.by_recruiter,
+      conversao_por_senioridade: D.by_seniority,
+      scores_medios_por_contratado: D.scores_by_hired,
+      velocidade_por_contratado: D.velocity_by_hired,
+      conversao_por_sinal_de_nota: D.signal_conv,
+      mediana_dias_resposta: D.median_response_time_days,
+    },
+    candidato_avaliado_no_formulario: lastEvaluation ? lastEvaluation.input : null,
+    veredito_do_motor_deterministico: lastEvaluation ? {
+      indice: lastEvaluation.result.score, tier: lastEvaluation.result.tierLabel
+    } : null,
+  };
+
+  const prompt = `Você é o Candidate Advisor da CloudWalk, um assistente de recrutamento data-driven. `+
+    `Responda SOMENTE com base nos dados fornecidos abaixo (não invente números). Seja direto, conciso `+
+    `(máximo 4 frases), em português do Brasil, e dê uma recomendação clara.\n\n`+
+    `DADOS:\n${JSON.stringify(context)}\n\nPERGUNTA DO RECRUTADOR:\n${question}`;
+
+  try{
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true',
+      },
+      body: JSON.stringify({
+        model:'claude-sonnet-5',
+        max_tokens: 400,
+        messages:[{role:'user', content: prompt}],
+      }),
+    });
+    const data = await resp.json();
+    chatLog.removeChild(chatLog.lastChild);
+    if (data.error){
+      addChatMsg('assistant', `<b>Erro:</b> ${data.error.message || 'não foi possível completar a chamada.'}`);
+    } else {
+      const text = (data.content && data.content[0] && data.content[0].text) || 'Sem resposta.';
+      addChatMsg('assistant', text.replace(/\n/g, '<br>'));
+    }
+  } catch(err){
+    chatLog.removeChild(chatLog.lastChild);
+    addChatMsg('assistant', `<b>Erro de conexão:</b> verifique sua chave e sua internet. (${err.message})`);
+  }
+  btnAsk.disabled = false;
+}
+
+btnAsk.addEventListener('click', askAdvisor);
+inQuestion.addEventListener('keydown', e => { if (e.key === 'Enter') askAdvisor(); });
+</script>
+
+</body>
+</html>
