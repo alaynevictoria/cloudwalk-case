@@ -5,9 +5,9 @@ jan–jun/2025), com uso aplicado de IA para classificar o sinal qualitativo das
 
 ![Preview do dashboard](docs/screenshots/dashboard_preview.png)
 
-> Screenshot capturado offline (sem internet), por isso fontes e gráficos aparecem com fallback. Abrindo
-> `dashboard/index.html` num navegador normal, a tipografia (Sora/Inter) e os gráficos (Chart.js) carregam
-> via CDN e o visual fica completo — vale recapturar este print depois de revisar o resultado final.
+> Screenshot atualizado após a versão final do dashboard. As únicas diferenças possíveis num navegador
+> comum são de tipografia (Sora/Inter via Google Fonts) — os gráficos são SVG nativo, sem dependência
+> externa, e renderizam do mesmo jeito com ou sem internet.
 
 ## O que este repositório responde
 
@@ -53,8 +53,8 @@ O dashboard tem uma ferramenta interativa para decidir, candidato a candidato, s
   aba, nunca salva ou commitada), você pode perguntar em linguagem natural sobre um candidato — a resposta
   usa os mesmos dados agregados do dashboard como contexto, não números inventados.
 
-Se o Chart.js não carregar (ex.: demo offline, CDN bloqueado), os gráficos mostram um aviso mas o resto do
-dashboard — incluindo o Advisor — continua funcionando normalmente.
+Os gráficos são construídos em SVG puro (sem biblioteca externa) justamente para não depender de CDN —
+funcionam identicamente com ou sem internet, com ou sem bloqueador de anúncios.
 
 ## Design e apresentação de dados
 
